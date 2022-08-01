@@ -20,11 +20,7 @@ export class ListaClienteComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe((result) => {
-      console.log('The dialog was closed');
+      //
     });
-  }
-
-  novo() {
-    this.router.navigate(['/cadastro-cliente']);
   }
 }
