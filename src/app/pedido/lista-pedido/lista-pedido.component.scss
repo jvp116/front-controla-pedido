@@ -1,0 +1,26 @@
+.flex {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.buttons {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  flex-wrap: nowrap;
+}
+
+button {
+  display: flex;
+}
+
+.pesquisa {
+  width: 600px;
+}
+
+h1,
+h2 {
+  margin: 0;
+}
