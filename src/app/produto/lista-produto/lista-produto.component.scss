@@ -1,0 +1,10 @@
+.buttons {
+  display: flex;
+  justify-content: flex-end;
+  flex-wrap: nowrap;
+}
+
+button {
+  display: flex;
+  width: 100px;
+}

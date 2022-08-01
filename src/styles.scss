@@ -7,9 +7,12 @@
 html,
 body {
   height: 100%;
-  width: 100%;
-  font-family: "Montserrat", sans-serif;
-  background: linear-gradient(315deg, #ffffff, #d7e1ec);
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  background-image: linear-gradient(to top, #e6e9f0 0%, #eef1f5 100%);
 }
 
 .options {
@@ -22,13 +25,14 @@ body {
     border-radius: 15px;
   }
 
-  h4 {
+  h2 {
     margin-top: 20px;
   }
 }
 .painel {
   height: 600px;
   margin: 50px 50px 0 50px;
+  padding: 20px;
   border: solid 1px #6c757d;
   border-radius: 15px;
 }
