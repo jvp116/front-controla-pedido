@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { Router } from '@angular/router';
+import { CadastroClienteComponent } from '../cadastro-cliente/cadastro-cliente.component';
 
 @Component({
   selector: 'app-lista-cliente',
@@ -6,7 +9,22 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./lista-cliente.component.scss'],
 })
 export class ListaClienteComponent implements OnInit {
-  constructor() {}
+  constructor(private router: Router, public dialog: MatDialog) {}
 
   ngOnInit(): void {}
+
+  addCliente(): void {
+    const dialogRef = this.dialog.open(CadastroClienteComponent, {
+      minWidth: '500px',
+      minHeight: '300px',
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      console.log('The dialog was closed');
+    });
+  }
+
+  novo() {
+    this.router.navigate(['/cadastro-cliente']);
+  }
 }

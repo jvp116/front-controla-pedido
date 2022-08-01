@@ -1,4 +1,13 @@
-<div class="mb-3">
-  <label for="exampleFormControlInput1" class="form-label">Email address</label>
-  <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+<h1 mat-dialog-title>Novo Cliente</h1>
+<div mat-dialog-content>
+  <form class="formCliente" [formGroup]="clienteForm">
+    <div class="mb-3">
+      <label for="nome" class="form-label">Nome</label>
+      <input matInput id="nome" class="form-control">
+    </div>
+  </form>
+</div>
+<div mat-dialog-actions>
+  <button class="btn btn-danger me-3" mat-button (click)="close()">Fechar</button>
+  <button class="btn btn-success" mat-button [mat-dialog-close]="" cdkFocusInitial>Salvar</button>
 </div>
