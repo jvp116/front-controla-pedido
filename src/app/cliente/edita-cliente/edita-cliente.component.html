@@ -1,9 +1,13 @@
 <h1 mat-dialog-title>Editar Cliente</h1>
 <div mat-dialog-content>
+  <div *ngIf="this.validaEditCliente" class="alert alert-warning">
+    <mat-icon class="me-2">warning</mat-icon>
+    Se você deseja atualizar o cadastro, insira novas informações!
+  </div>
   <form class="formCliente" [formGroup]="clienteForm">
     <div class="mb-3">
       <label for="cpf" class="form-label">CPF</label>
-      <input class="form-control" type="text" id="cpf" value="{{this.data.cpf}}" disabled>
+      <input class="form-control" type="text" id="cpf" value="{{this.data.cpf | mask: '000.000.000-00'}}" disabled>
     </div>
 
     <div class="mb-3">
@@ -19,7 +23,8 @@
 </div>
 <div class="modal-footer">
   <div mat-dialog-actions>
-    <button class="btn btn-danger me-3" mat-button (click)="closeModal()">Fechar</button>
-    <button class="btn btn-success" mat-button (click)="alterClient()" cdkFocusInitial>Salvar</button>
+    <button class="btn btn-danger me-3" mat-button (click)="closeModal()" cdkFocusInitial>Fechar</button>
+    <button id="saveEdit" class="btn btn-success" mat-button (click)="alterClient()"
+      [disabled]="clienteForm.pristine || clienteForm.invalid">Salvar</button>
   </div>
 </div>

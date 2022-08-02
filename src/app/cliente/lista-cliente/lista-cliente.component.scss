@@ -12,12 +12,13 @@
   flex-wrap: nowrap;
 }
 
-button {
-  display: flex;
-}
-
 .pesquisa {
   width: 500px;
+}
+
+button {
+  display: flex;
+  margin: 0 !important;
 }
 
 h1 {

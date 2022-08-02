@@ -12,6 +12,7 @@ import { CadastroClienteComponent } from './../cadastro-cliente/cadastro-cliente
 })
 export class EditaClienteComponent implements OnInit {
   public clienteForm: FormGroup;
+  validaEditCliente: boolean = false;
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: Cliente,
@@ -21,7 +22,6 @@ export class EditaClienteComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    console.log(this.data);
     this.clienteForm = this.fb.group({
       nome: [this.data.nome],
       sobrenome: [this.data.sobrenome],
@@ -29,8 +29,15 @@ export class EditaClienteComponent implements OnInit {
   }
 
   alterClient() {
-    this.rest.putCliente(this.clienteForm.value).subscribe((result) => {});
-    this.closeModal();
+    if (
+      this.clienteForm.value['nome'] != this.data.nome ||
+      this.clienteForm.value['sobrenome'] != this.data.sobrenome
+    ) {
+      this.rest.putCliente(this.clienteForm.value).subscribe((result) => {});
+      this.closeModal();
+    } else {
+      this.validaEditCliente = true;
+    }
   }
 
   closeModal(): void {

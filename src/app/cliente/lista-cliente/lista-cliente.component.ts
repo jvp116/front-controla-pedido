@@ -25,8 +25,8 @@ export class ListaClienteComponent implements OnInit {
     //   this.clientes = data.clientes;
     // });
     this.clientes = [
-      { id: '1', cpf: '123.456.789-10', nome: 'userA', sobrenome: 'Oliveira' },
-      { id: '2', cpf: '987.654.321-00', nome: 'UserB', sobrenome: 'Santos' },
+      { id: '1', cpf: '12345678910', nome: 'userA', sobrenome: 'Oliveira' },
+      { id: '2', cpf: '98765432100', nome: 'UserB', sobrenome: 'Santos' },
     ];
   }
 
