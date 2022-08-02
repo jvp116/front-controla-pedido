@@ -1,0 +1,25 @@
+<h1 mat-dialog-title>Editar Cliente</h1>
+<div mat-dialog-content>
+  <form class="formCliente" [formGroup]="clienteForm">
+    <div class="mb-3">
+      <label for="cpf" class="form-label">CPF</label>
+      <input class="form-control" type="text" id="cpf" value="{{this.data.cpf}}" disabled>
+    </div>
+
+    <div class="mb-3">
+      <label for="nome" class="form-label">Nome</label>
+      <input matInput id="nome" class="form-control" formControlName="nome" name="nome">
+    </div>
+
+    <div class="mb-3">
+      <label for="sobrenome" class="form-label">Sobrenome</label>
+      <input matInput id="sobrenome" class="form-control" formControlName="sobrenome" name="sobrenome">
+    </div>
+  </form>
+</div>
+<div class="modal-footer">
+  <div mat-dialog-actions>
+    <button class="btn btn-danger me-3" mat-button (click)="closeModal()">Fechar</button>
+    <button class="btn btn-success" mat-button (click)="alterClient()" cdkFocusInitial>Salvar</button>
+  </div>
+</div>
