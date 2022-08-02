@@ -12,6 +12,7 @@ import { ListaClienteComponent } from './cliente/lista-cliente/lista-cliente.com
 import { ListaPedidoComponent } from './pedido/lista-pedido/lista-pedido.component';
 import { ListaProdutoComponent } from './produto/lista-produto/lista-produto.component';
 import { MaterialModule } from './shared/modules/material/material.module';
+import { EditaClienteComponent } from './cliente/edita-cliente/edita-cliente.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { MaterialModule } from './shared/modules/material/material.module';
     ListaClienteComponent,
     ListaProdutoComponent,
     ListaPedidoComponent,
+    EditaClienteComponent,
   ],
   imports: [
     BrowserModule,
