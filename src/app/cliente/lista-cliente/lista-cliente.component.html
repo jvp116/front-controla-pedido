@@ -24,21 +24,23 @@
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <th scope="row">1</th>
-      <td>João</td>
-      <td>V. Paltanin</td>
-      <td>000.000.000-00</td>
-      <td>
-        <button type="button" class="btn btn-outline-warning ms-3">
-          <mat-icon>edit</mat-icon>
-        </button>
-      </td>
-      <td>
-        <button type="button" class="btn btn-outline-danger ms-3">
-          <mat-icon>delete</mat-icon>
-        </button>
-      </td>
-    </tr>
+    <ng-container *ngFor="let cliente of clientes">
+      <tr>
+        <th scope="row">{{cliente.id}}</th>
+        <td>{{cliente.nome}}</td>
+        <td>{{cliente.sobrenome}}</td>
+        <td>{{cliente.cpf}}</td>
+        <td>
+          <button type="button" class="btn btn-outline-warning ms-3" (click)="editCliente(cliente.id)">
+            <mat-icon>edit</mat-icon>
+          </button>
+        </td>
+        <td>
+          <button type="button" class="btn btn-outline-danger ms-3">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </td>
+      </tr>
+    </ng-container>
   </tbody>
 </table>

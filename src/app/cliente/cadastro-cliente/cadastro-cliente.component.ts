@@ -14,7 +14,7 @@ export class CadastroClienteComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private rest: ClienteService,
-    public dialogRef: MatDialogRef<CadastroClienteComponent>
+    public dialogAdd: MatDialogRef<CadastroClienteComponent>
   ) {}
 
   ngOnInit(): void {
@@ -31,7 +31,7 @@ export class CadastroClienteComponent implements OnInit {
   }
 
   closeModal(): void {
-    this.dialogRef.close();
+    this.dialogAdd.close();
     this.clienteForm.reset();
   }
 }
