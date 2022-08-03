@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { CadastroClienteComponent } from '../cadastro-cliente/cadastro-cliente.component';
+import { CadastraClienteComponent } from '../cadastra-cliente/cadastra-cliente.component';
 import { Cliente } from './../../shared/model/cliente.model';
 import { ClienteService } from './../../shared/service/cliente.service';
 import { EditaClienteComponent } from './../edita-cliente/edita-cliente.component';
@@ -31,7 +31,7 @@ export class ListaClienteComponent implements OnInit {
   }
 
   addCliente(): void {
-    const dialogAdd = this.dialog.open(CadastroClienteComponent, {
+    const dialogAdd = this.dialog.open(CadastraClienteComponent, {
       minWidth: '550px',
       minHeight: '300px',
     });

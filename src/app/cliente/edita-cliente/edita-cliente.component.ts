@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Cliente } from './../../shared/model/cliente.model';
 import { ClienteService } from './../../shared/service/cliente.service';
-import { CadastroClienteComponent } from './../cadastro-cliente/cadastro-cliente.component';
+import { CadastraClienteComponent } from '../cadastra-cliente/cadastra-cliente.component';
 
 @Component({
   selector: 'app-edita-cliente',
@@ -17,7 +17,7 @@ export class EditaClienteComponent implements OnInit {
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: Cliente,
     private fb: FormBuilder,
-    public dialogEdit: MatDialogRef<CadastroClienteComponent>,
+    public dialogEdit: MatDialogRef<CadastraClienteComponent>,
     private rest: ClienteService
   ) {}
 
