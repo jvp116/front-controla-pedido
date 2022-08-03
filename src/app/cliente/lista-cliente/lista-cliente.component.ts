@@ -32,7 +32,7 @@ export class ListaClienteComponent implements OnInit {
 
   addCliente(): void {
     const dialogAdd = this.dialog.open(CadastroClienteComponent, {
-      minWidth: '500px',
+      minWidth: '550px',
       minHeight: '300px',
     });
 
@@ -47,7 +47,7 @@ export class ListaClienteComponent implements OnInit {
     }
 
     const dialogEdit = this.dialog.open(EditaClienteComponent, {
-      minWidth: '500px',
+      minWidth: '550px',
       minHeight: '300px',
       data: {
         cpf: this.element.cpf,

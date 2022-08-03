@@ -37,6 +37,9 @@ export class EditaClienteComponent implements OnInit {
       this.closeModal();
     } else {
       this.validaEditCliente = true;
+      setTimeout(() => {
+        this.validaEditCliente = false;
+      }, 4000);
     }
   }
 
