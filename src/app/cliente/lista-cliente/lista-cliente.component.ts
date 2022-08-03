@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { CadastraClienteComponent } from '../cadastra-cliente/cadastra-cliente.component';
 import { Cliente } from './../../shared/model/cliente.model';
 import { ClienteService } from './../../shared/service/cliente.service';
+import { DeletaClienteComponent } from './../deleta-cliente/deleta-cliente.component';
 import { EditaClienteComponent } from './../edita-cliente/edita-cliente.component';
 
 @Component({
@@ -35,7 +36,6 @@ export class ListaClienteComponent implements OnInit {
       minWidth: '550px',
       minHeight: '300px',
     });
-
     dialogAdd.afterClosed().subscribe((result) => {});
   }
 
@@ -55,7 +55,23 @@ export class ListaClienteComponent implements OnInit {
         sobrenome: this.element.sobrenome,
       },
     });
-
     dialogEdit.afterClosed().subscribe((result) => {});
+  }
+
+  deleteCliente(id: string): void {
+    for (let i = 0; i < this.clientes.length; i++) {
+      if (this.clientes[i].id == id) {
+        this.element = this.clientes[i];
+      }
+    }
+
+    const dialogDelete = this.dialog.open(DeletaClienteComponent, {
+      minWidth: '500px',
+      minHeight: '150',
+      data: {
+        id: this.element.id,
+      },
+    });
+    dialogDelete.afterClosed().subscribe((result) => {});
   }
 }

@@ -1,6 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { DeletaClienteComponent } from './deleta-cliente.component';
+import { DeletaClienteComponent } from '../../src/app/cliente/deleta-cliente/deleta-cliente.component';
 
 describe('DeletaClienteComponent', () => {
   let component: DeletaClienteComponent;
@@ -8,9 +7,8 @@ describe('DeletaClienteComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ DeletaClienteComponent ]
-    })
-    .compileComponents();
+      declarations: [DeletaClienteComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(DeletaClienteComponent);
     component = fixture.componentInstance;

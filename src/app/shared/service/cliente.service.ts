@@ -20,14 +20,6 @@ export class ClienteService {
     return this.httpClient.get<Clientes>(this.apiUrl, this.httpOptions);
   }
 
-  // Lista Cliente ID
-  // public getClienteWithId(id: string): Observable<Cliente> {
-  //   return this.httpClient.get<Cliente>(
-  //     this.apiUrl + '/' + id,
-  //     this.httpOptions
-  //   );
-  // }
-
   // Cadastrar Cliente
   public postCliente(cliente: Cliente): Observable<Cliente> {
     return this.httpClient.post<Cliente>(
@@ -41,5 +33,10 @@ export class ClienteService {
   public putCliente(cliente: Cliente): Observable<Cliente> {
     const body = { nome: cliente.nome, sobrenome: cliente.sobrenome };
     return this.httpClient.put<Cliente>(this.apiUrl, body, this.httpOptions);
+  }
+
+  // Deletar Cliente
+  public deleteCliente(): Observable<Cliente> {
+    return this.httpClient.delete<Cliente>(this.apiUrl, this.httpOptions);
   }
 }

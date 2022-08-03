@@ -1,1 +1,10 @@
-<p>deleta-cliente works!</p>
+<h1 mat-dialog-title>Excluir Cliente</h1>
+<div mat-dialog-content class="mb-3">
+  Tem certeza de que deseja excluir este registro permanentemente?
+</div>
+<div class="modal-footer">
+  <div mat-dialog-actions>
+    <button class="btn btn-danger me-3" mat-button (click)="closeModal()" cdkFocusInitial>Não</button>
+    <button class="btn btn-success" mat-button (click)="removeCliente()">Sim</button>
+  </div>
+</div>
