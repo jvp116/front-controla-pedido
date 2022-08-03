@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { CadastraClienteComponent } from '../cadastra-cliente/cadastra-cliente.component';
 import { Cliente } from './../../shared/model/cliente.model';
@@ -13,16 +14,49 @@ import { EditaClienteComponent } from './../edita-cliente/edita-cliente.componen
 })
 export class ListaClienteComponent implements OnInit {
   clientes: Cliente[];
+  resultClientes: Cliente[] = [];
   element: Cliente;
+  public searchForm: FormGroup;
 
-  constructor(public dialog: MatDialog, private rest: ClienteService) {}
+  constructor(
+    private fb: FormBuilder,
+    public dialog: MatDialog,
+    private rest: ClienteService
+  ) {}
 
   ngOnInit(): void {
     this.getClientes();
+    this.formSearchCliente();
+  }
+
+  formSearchCliente() {
+    this.searchForm = this.fb.group({
+      nomeCliente: [],
+    });
+  }
+
+  searchClienteByNome() {
+    const resultSearch = JSON.stringify(this.searchForm.value);
+    if (!resultSearch.includes('null')) {
+      this.getClientes();
+      this.clientes.forEach((element) => {
+        if (resultSearch.includes(element.nome)) {
+          this.clientes = [];
+          this.resultClientes = [];
+
+          this.resultClientes.push(element);
+          this.clientes = this.resultClientes;
+        }
+      });
+    } else {
+      this.getClientes();
+      this.resultClientes = [];
+    }
+    this.searchForm.reset();
   }
 
   getClientes() {
-    // this.rest.getClientes().subscribe((data) => {
+    // return this.rest.getClientes().subscribe((data) => {
     //   this.clientes = data.clientes;
     // });
     this.clientes = [

@@ -5,9 +5,10 @@
       <mat-icon class="me-2">add</mat-icon>Novo
     </button>
   </div>
-  <div class="buttons">
-    <input class="form-control me-2 pesquisa" type="search" placeholder="Pesquisar">
-    <button class="btn btn-outline-primary" type="submit">
+  <div class="buttons" [formGroup]="searchForm">
+    <input matInput type="search" id="search" name="search" class="form-control ms-2 me-2 pesquisa"
+      formControlName="nomeCliente" placeholder="Pesquisar">
+    <button class="btn btn-outline-primary" type="submit" (click)="searchClienteByNome()">
       <mat-icon>search</mat-icon>
     </button>
   </div>
