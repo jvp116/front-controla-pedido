@@ -37,13 +37,10 @@ export class ListaClienteComponent implements OnInit {
 
   searchClienteByNome() {
     const resultSearch = JSON.stringify(this.searchForm.value);
+    console.log(resultSearch);
     if (!resultSearch.includes('null')) {
-      this.getClientes();
       this.clientes.forEach((element) => {
         if (resultSearch.includes(element.nome)) {
-          this.clientes = [];
-          this.resultClientes = [];
-
           this.resultClientes.push(element);
           this.clientes = this.resultClientes;
         }
@@ -56,13 +53,9 @@ export class ListaClienteComponent implements OnInit {
   }
 
   getClientes() {
-    // return this.rest.getClientes().subscribe((data) => {
-    //   this.clientes = data.clientes;
-    // });
-    this.clientes = [
-      { id: '1', cpf: '12345678910', nome: 'userA', sobrenome: 'Oliveira' },
-      { id: '2', cpf: '98765432100', nome: 'UserB', sobrenome: 'Santos' },
-    ];
+    return this.rest.getClientes().subscribe((data) => {
+      this.clientes = JSON.parse(JSON.stringify(data));
+    });
   }
 
   addCliente(): void {
@@ -70,7 +63,9 @@ export class ListaClienteComponent implements OnInit {
       minWidth: '550px',
       minHeight: '300px',
     });
-    dialogAdd.afterClosed().subscribe((result) => {});
+    dialogAdd.afterClosed().subscribe((result) => {
+      this.ngOnInit();
+    });
   }
 
   editCliente(id: string): void {

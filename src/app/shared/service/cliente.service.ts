@@ -17,7 +17,7 @@ export class ClienteService {
 
   // Listar Clientes
   public getClientes(): Observable<Clientes> {
-    return this.httpClient.get<Clientes>(this.apiUrl, this.httpOptions);
+    return this.httpClient.get<Clientes>(this.apiUrl);
   }
 
   // Cadastrar Cliente
