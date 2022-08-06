@@ -15,7 +15,6 @@ import { EditaClienteComponent } from './../edita-cliente/edita-cliente.componen
 export class ListaClienteComponent implements OnInit {
   clientes: Cliente[];
   resultClientes: Cliente[] = [];
-  element: Cliente;
   public searchForm: FormGroup;
 
   constructor(
@@ -37,7 +36,6 @@ export class ListaClienteComponent implements OnInit {
 
   searchClienteByNome() {
     const resultSearch = JSON.stringify(this.searchForm.value);
-    console.log(resultSearch);
     if (!resultSearch.includes('null')) {
       this.clientes.forEach((element) => {
         if (resultSearch.includes(element.nome)) {
@@ -68,39 +66,32 @@ export class ListaClienteComponent implements OnInit {
     });
   }
 
-  editCliente(id: string): void {
-    for (let i = 0; i < this.clientes.length; i++) {
-      if (this.clientes[i].id == id) {
-        this.element = this.clientes[i];
-      }
-    }
-
+  editCliente(cliente: Cliente): void {
     const dialogEdit = this.dialog.open(EditaClienteComponent, {
       minWidth: '550px',
       minHeight: '300px',
       data: {
-        cpf: this.element.cpf,
-        nome: this.element.nome,
-        sobrenome: this.element.sobrenome,
+        id: cliente.id,
+        cpf: cliente.cpf,
+        nome: cliente.nome,
+        sobrenome: cliente.sobrenome,
       },
     });
-    dialogEdit.afterClosed().subscribe((result) => {});
+    dialogEdit.afterClosed().subscribe((result) => {
+      this.ngOnInit();
+    });
   }
 
-  deleteCliente(id: string): void {
-    for (let i = 0; i < this.clientes.length; i++) {
-      if (this.clientes[i].id == id) {
-        this.element = this.clientes[i];
-      }
-    }
-
+  deleteCliente(id: any): void {
     const dialogDelete = this.dialog.open(DeletaClienteComponent, {
       minWidth: '500px',
       minHeight: '150',
       data: {
-        id: this.element.id,
+        id: id,
       },
     });
-    dialogDelete.afterClosed().subscribe((result) => {});
+    dialogDelete.afterClosed().subscribe((result) => {
+      this.ngOnInit();
+    });
   }
 }

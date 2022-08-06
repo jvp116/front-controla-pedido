@@ -1,9 +1,9 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { CadastraClienteComponent } from '../cadastra-cliente/cadastra-cliente.component';
 import { Cliente } from './../../shared/model/cliente.model';
 import { ClienteService } from './../../shared/service/cliente.service';
-import { CadastraClienteComponent } from '../cadastra-cliente/cadastra-cliente.component';
 
 @Component({
   selector: 'app-edita-cliente',
@@ -23,8 +23,8 @@ export class EditaClienteComponent implements OnInit {
 
   ngOnInit(): void {
     this.clienteForm = this.fb.group({
-      nome: [this.data.nome],
-      sobrenome: [this.data.sobrenome],
+      nome: [this.data.nome, Validators.required],
+      sobrenome: [this.data.sobrenome, Validators.required],
     });
   }
 
@@ -33,7 +33,10 @@ export class EditaClienteComponent implements OnInit {
       this.clienteForm.value['nome'] != this.data.nome ||
       this.clienteForm.value['sobrenome'] != this.data.sobrenome
     ) {
-      this.rest.putCliente(this.clienteForm.value).subscribe((result) => {});
+      this.data.nome = this.clienteForm.value['nome'];
+      this.data.sobrenome = this.clienteForm.value['sobrenome'];
+
+      this.rest.putCliente(this.data).subscribe((result) => {});
       this.closeModal();
     } else {
       this.validaEditCliente = true;

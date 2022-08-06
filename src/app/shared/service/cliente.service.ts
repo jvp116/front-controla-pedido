@@ -17,7 +17,7 @@ export class ClienteService {
 
   // Listar Clientes
   public getClientes(): Observable<Clientes> {
-    return this.httpClient.get<Clientes>(this.apiUrl);
+    return this.httpClient.get<Clientes>(this.apiUrl, this.httpOptions);
   }
 
   // Cadastrar Cliente
@@ -32,11 +32,18 @@ export class ClienteService {
   // Editar Cliente
   public putCliente(cliente: Cliente): Observable<Cliente> {
     const body = { nome: cliente.nome, sobrenome: cliente.sobrenome };
-    return this.httpClient.put<Cliente>(this.apiUrl, body, this.httpOptions);
+    return this.httpClient.put<Cliente>(
+      this.apiUrl + '/' + cliente.id,
+      body,
+      this.httpOptions
+    );
   }
 
   // Deletar Cliente
-  public deleteCliente(): Observable<Cliente> {
-    return this.httpClient.delete<Cliente>(this.apiUrl, this.httpOptions);
+  public deleteCliente(id: any): Observable<Cliente> {
+    return this.httpClient.delete<Cliente>(
+      this.apiUrl + '/' + id,
+      this.httpOptions
+    );
   }
 }

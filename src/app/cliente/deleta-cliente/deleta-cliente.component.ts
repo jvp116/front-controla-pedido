@@ -19,9 +19,7 @@ export class DeletaClienteComponent implements OnInit {
   ngOnInit(): void {}
 
   removeCliente() {
-    this.rest.deleteCliente().subscribe((result) => {
-      console.log(result);
-    });
+    this.rest.deleteCliente(this.data.id).subscribe((result) => {});
     this.closeModal();
   }
 
