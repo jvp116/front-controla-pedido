@@ -15,6 +15,7 @@ import { EditaClienteComponent } from './../edita-cliente/edita-cliente.componen
 export class ListaClienteComponent implements OnInit {
   clientes: Cliente[];
   resultClientes: Cliente[] = [];
+  pesquisa: boolean = false;
   public searchForm: FormGroup;
 
   constructor(
@@ -34,18 +35,16 @@ export class ListaClienteComponent implements OnInit {
     });
   }
 
-  searchClienteByNome() {
-    const resultSearch = JSON.stringify(this.searchForm.value);
+  searchCliente() {
+    const resultSearch = JSON.stringify(this.searchForm.value).toLowerCase();
     if (!resultSearch.includes('null')) {
+      this.resultClientes = [];
       this.clientes.forEach((element) => {
-        if (resultSearch.includes(element.nome)) {
+        if (resultSearch.includes(element.nome.toLowerCase())) {
           this.resultClientes.push(element);
-          this.clientes = this.resultClientes;
+          this.pesquisa = true;
         }
       });
-    } else {
-      this.getClientes();
-      this.resultClientes = [];
     }
     this.searchForm.reset();
   }
