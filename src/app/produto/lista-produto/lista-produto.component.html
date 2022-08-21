@@ -1,7 +1,7 @@
 <div class="flex mb-4">
   <div class="buttons">
     <h5 class="me-3" style="margin-bottom: 0;">Produtos</h5>
-    <button type="button" class="btn btn-outline-success">
+    <button type="button" class="btn btn-outline-success" (click)="addProduto()">
       <mat-icon class="me-2">add</mat-icon>Novo
     </button>
   </div>
@@ -22,22 +22,21 @@
     </tr>
   </thead>
   <tbody>
-    <!-- <ng-container *ngFor="let produtos of produtos">
-
-    </ng-container> -->
-    <tr>
-      <th scope="row">1</th>
-      <td>Caneta Azul</td>
-      <td>
-        <button type="button" class="btn btn-outline-warning ms-3">
-          <mat-icon>edit</mat-icon>
-        </button>
-      </td>
-      <td>
-        <button type="button" class="btn btn-outline-danger ms-3">
-          <mat-icon>delete</mat-icon>
-        </button>
-      </td>
-    </tr>
+    <ng-container *ngFor="let produto of produtos">
+      <tr>
+        <th scope="row">{{produto.id}}</th>
+        <td>{{produto.descricao}}</td>
+        <td>
+          <button type="button" class="btn btn-outline-warning ms-3">
+            <mat-icon>edit</mat-icon>
+          </button>
+        </td>
+        <td>
+          <button type="button" class="btn btn-outline-danger ms-3">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </td>
+      </tr>
+    </ng-container>
   </tbody>
 </table>

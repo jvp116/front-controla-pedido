@@ -11,9 +11,8 @@ import { CadastraProdutoComponent } from './../cadastra-produto/cadastra-produto
 })
 export class ListaProdutoComponent implements OnInit {
   produtos: Produto[];
-  public dialog: MatDialog;
 
-  constructor(private rest: ProdutoService) {}
+  constructor(public dialog: MatDialog, private rest: ProdutoService) {}
 
   ngOnInit(): void {
     this.getProdutos();
