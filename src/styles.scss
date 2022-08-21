@@ -31,8 +31,9 @@ body {
   }
 }
 .painel {
-  height: 700px;
-  margin: 50px 50px 0 50px;
+  min-height: 500px;
+  height: auto;
+  margin: 50px;
   padding: 20px;
   border: solid 1px #6c757d;
   border-radius: 5px;
