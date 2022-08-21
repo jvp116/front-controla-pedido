@@ -2,7 +2,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { CadastraClienteComponent } from '../cadastra-cliente/cadastra-cliente.component';
-import { Cliente } from './../../shared/model/cliente.model';
+import { Cliente } from '../../shared/models/cliente.model';
 import { ClienteService } from './../../shared/service/cliente.service';
 
 @Component({

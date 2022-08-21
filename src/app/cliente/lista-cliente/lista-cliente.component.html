@@ -16,7 +16,7 @@
     </button>
   </div>
 </div>
-<table class="table">
+<table class="table table-striped">
   <thead>
     <tr>
       <th scope="col">ID</th>
@@ -29,7 +29,6 @@
   </thead>
   <tbody>
     <div *ngIf="pesquisa == false">
-
     </div>
     <ng-template [ngIf]="!pesquisa" [ngIfElse]="listaPesquisa">
       <ng-container *ngFor="let cliente of clientes">

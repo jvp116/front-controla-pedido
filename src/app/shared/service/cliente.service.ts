@@ -1,8 +1,8 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Cliente } from '../model/cliente.model';
-import { Clientes } from './../model/clientes.model';
+import { Cliente } from '../models/cliente.model';
+import { Clientes } from '../models/clientes.model';
 
 @Injectable({ providedIn: 'root' })
 export class ClienteService {

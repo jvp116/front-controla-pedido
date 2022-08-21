@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { CadastraClienteComponent } from '../cadastra-cliente/cadastra-cliente.component';
-import { Cliente } from './../../shared/model/cliente.model';
+import { Cliente } from '../../shared/models/cliente.model';
 import { ClienteService } from './../../shared/service/cliente.service';
 import { DeletaClienteComponent } from './../deleta-cliente/deleta-cliente.component';
 import { EditaClienteComponent } from './../edita-cliente/edita-cliente.component';
