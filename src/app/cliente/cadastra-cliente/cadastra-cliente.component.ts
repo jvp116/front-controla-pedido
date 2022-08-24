@@ -25,7 +25,7 @@ export class CadastraClienteComponent implements OnInit {
     });
   }
 
-  createClient() {
+  createCliente() {
     this.rest.postCliente(this.clienteForm.value).subscribe((result) => {});
     this.closeModal();
   }

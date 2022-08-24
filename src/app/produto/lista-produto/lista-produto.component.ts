@@ -27,7 +27,7 @@ export class ListaProdutoComponent implements OnInit {
   addProduto(): void {
     const dialogAdd = this.dialog.open(CadastraProdutoComponent, {
       minWidth: '550px',
-      minHeight: '300px',
+      minHeight: '200px',
     });
     dialogAdd.afterClosed().subscribe((result) => {
       this.ngOnInit();

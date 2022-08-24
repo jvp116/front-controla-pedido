@@ -1,1 +1,16 @@
-<p>cadastra-produto works!</p>
+<h1 mat-dialog-title>Novo Produto</h1>
+<div mat-dialog-content>
+  <form class="formProduto" [formGroup]="produtoForm">
+    <div class="mb-3">
+      <label for="descricao" class="form-label">Descrição <span style="color: red;">*</span></label>
+      <input matInput id="descricao" name="descricao" class="form-control" formControlName="descricao">
+    </div>
+  </form>
+</div>
+<div class="modal-footer">
+  <div mat-dialog-actions>
+    <button class="btn btn-danger me-3" mat-button (click)="closeModal()" cdkFocusInitial>Fechar</button>
+    <button type="submit" class="btn btn-success" mat-button (click)="createProduto()"
+      [disabled]="produtoForm.pristine || produtoForm.invalid">Salvar</button>
+  </div>
+</div>
