@@ -27,7 +27,7 @@
         <th scope="row">{{produto.id}}</th>
         <td>{{produto.descricao}}</td>
         <td>
-          <button type="button" class="btn btn-outline-warning ms-3">
+          <button type="button" class="btn btn-outline-warning ms-3" (click)="editProduto(produto)">
             <mat-icon>edit</mat-icon>
           </button>
         </td>

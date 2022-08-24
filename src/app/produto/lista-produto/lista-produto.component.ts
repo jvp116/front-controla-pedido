@@ -4,6 +4,7 @@ import { Produto } from './../../shared/models/produto.model';
 import { ProdutoService } from './../../shared/service/produto.service';
 import { CadastraProdutoComponent } from './../cadastra-produto/cadastra-produto.component';
 import { DeletaProdutoComponent } from './../deleta-produto/deleta-produto.component';
+import { EditaProdutoComponent } from './../edita-produto/edita-produto.component';
 
 @Component({
   selector: 'app-lista-produto',
@@ -35,19 +36,19 @@ export class ListaProdutoComponent implements OnInit {
     });
   }
 
-  // editProduto(produto: Produto): void {
-  //   const dialogEdit = this.dialog.open(EditaProdutoComponent, {
-  //     minWidth: '550px',
-  //     minHeight: '300px',
-  //     data: {
-  //       id: produto.id,
-  //       descricao: produto.descricao,
-  //     },
-  //   });
-  //   dialogEdit.afterClosed().subscribe((result) => {
-  //     this.ngOnInit();
-  //   });
-  // }
+  editProduto(produto: Produto): void {
+    const dialogEdit = this.dialog.open(EditaProdutoComponent, {
+      minWidth: '550px',
+      minHeight: '300px',
+      data: {
+        id: produto.id,
+        descricao: produto.descricao,
+      },
+    });
+    dialogEdit.afterClosed().subscribe((result) => {
+      this.ngOnInit();
+    });
+  }
 
   deleteProduto(id: any): void {
     const dialogDelete = this.dialog.open(DeletaProdutoComponent, {

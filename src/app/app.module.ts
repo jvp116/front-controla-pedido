@@ -11,6 +11,7 @@ import { ClienteModule } from './cliente/cliente.module';
 import { ListaPedidoComponent } from './pedido/lista-pedido/lista-pedido.component';
 import { ProdutoModule } from './produto/produto.module';
 import { MaterialModule } from './shared/modules/material/material.module';
+import { EditaProdutoComponent } from './produto/edita-produto/edita-produto.component';
 
 @NgModule({
   declarations: [AppComponent, ListaPedidoComponent],

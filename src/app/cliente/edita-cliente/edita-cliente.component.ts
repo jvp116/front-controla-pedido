@@ -1,8 +1,8 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { CadastraClienteComponent } from '../cadastra-cliente/cadastra-cliente.component';
 import { Cliente } from '../../shared/models/cliente.model';
+import { CadastraClienteComponent } from '../cadastra-cliente/cadastra-cliente.component';
 import { ClienteService } from './../../shared/service/cliente.service';
 
 @Component({
@@ -28,7 +28,7 @@ export class EditaClienteComponent implements OnInit {
     });
   }
 
-  alterClient() {
+  alterCliente() {
     if (
       this.clienteForm.value['nome'] != this.data.nome ||
       this.clienteForm.value['sobrenome'] != this.data.sobrenome

@@ -1,0 +1,25 @@
+<h1 mat-dialog-title>Editar Produto</h1>
+<div mat-dialog-content>
+  <div *ngIf="this.validaEditProduto" class="alert alert-warning">
+    <mat-icon class="me-2">warning</mat-icon>
+    Se você deseja atualizar o cadastro, insira novas informações!
+  </div>
+  <form class="formProduto" [formGroup]="produtoForm">
+    <div class="mb-3">
+      <label for="if" class="form-label">ID</label>
+      <input class="form-control" type="text" id="id" value="{{this.data.id}}" disabled>
+    </div>
+
+    <div class="mb-3">
+      <label for="descricao" class="form-label">Descrição</label>
+      <input matInput id="descricao" class="form-control" formControlName="descricao" name="descricao">
+    </div>
+  </form>
+</div>
+<div class="modal-footer">
+  <div mat-dialog-actions>
+    <button class="btn btn-danger me-3" mat-button (click)="closeModal()" cdkFocusInitial>Fechar</button>
+    <button id="saveEdit" class="btn btn-success" mat-button (click)="alterProduto()"
+      [disabled]="produtoForm.pristine || produtoForm.invalid">Salvar</button>
+  </div>
+</div>
