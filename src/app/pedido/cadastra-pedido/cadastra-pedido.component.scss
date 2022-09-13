@@ -1,0 +1,19 @@
+@use "@material/tooltip/styles";
+
+::ng-deep {
+  legend {
+    font-size: 16px;
+    margin-bottom: 0;
+    text-align: center;
+  }
+
+  h1 {
+    margin-bottom: 24px;
+  }
+
+  .flex-col {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-end;
+  }
+}
