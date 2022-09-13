@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { Cliente } from '../../shared/models/cliente.model';
 import { ClienteService } from './../../shared/service/cliente.service';
@@ -14,39 +13,11 @@ import { EditaClienteComponent } from './../edita-cliente/edita-cliente.componen
 })
 export class ListaClienteComponent implements OnInit {
   clientes: Cliente[];
-  resultClientes: Cliente[] = [];
-  pesquisa: boolean = false;
-  public searchForm: FormGroup;
 
-  constructor(
-    private fb: FormBuilder,
-    public dialog: MatDialog,
-    private rest: ClienteService
-  ) {}
+  constructor(public dialog: MatDialog, private rest: ClienteService) {}
 
   ngOnInit(): void {
     this.getClientes();
-    this.formSearchCliente();
-  }
-
-  formSearchCliente() {
-    this.searchForm = this.fb.group({
-      nomeCliente: [],
-    });
-  }
-
-  searchCliente() {
-    const resultSearch = JSON.stringify(this.searchForm.value).toLowerCase();
-    if (!resultSearch.includes('null')) {
-      this.resultClientes = [];
-      this.clientes.forEach((element) => {
-        if (resultSearch.includes(element.nome.toLowerCase())) {
-          this.resultClientes.push(element);
-          this.pesquisa = true;
-        }
-      });
-    }
-    this.searchForm.reset();
   }
 
   getClientes() {

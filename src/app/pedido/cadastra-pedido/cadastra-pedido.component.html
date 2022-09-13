@@ -1,0 +1,44 @@
+<h1 mat-dialog-title>Novo Pedido</h1>
+<div mat-dialog-content>
+  <form class="formProduto" [formGroup]="pedidoForm">
+    <fieldset>
+      <legend>Dados do Cliente</legend>
+      <hr>
+
+      <div class="row mb-3">
+        <div class="col-10">
+          <div>
+            <label for="cpf" class="form-label">CPF <span style="color: red;" class="me-2">*</span></label>
+            <input matInput id="cpf" name="cpf" class="form-control" formControlName="cpf" mask="000.000.000-00">
+          </div>
+        </div>
+        <div class="col-2 flex-col">
+          <button class="btn btn-outline-primary" type="submit" style="display: flex;" (click)="getClienteByCpf()">
+            <mat-icon>search</mat-icon>
+          </button>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <div class="mb-3">
+            <label for="nome" class="form-label">Nome</label>
+            <input class="form-control" type="text" id="nome" value="{{this.cliente.nome}}" disabled>
+          </div>
+        </div>
+        <div class="col">
+          <div class="mb-3">
+            <label for="sobrenome" class="form-label">Sobrenome</label>
+            <input class="form-control" type="text" id="sobrenome" value="{{this.cliente.sobrenome}}" disabled>
+          </div>
+        </div>
+      </div>
+    </fieldset>
+  </form>
+</div>
+<div class="modal-footer">
+  <div mat-dialog-actions>
+    <button class="btn btn-danger me-3" mat-button (click)="closeModal()" cdkFocusInitial>Fechar</button>
+    <button type="submit" class="btn btn-success" mat-button (click)="createPedido()"
+      [disabled]="pedidoForm.pristine || pedidoForm.invalid">Salvar</button>
+  </div>
+</div>

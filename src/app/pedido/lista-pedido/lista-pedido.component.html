@@ -1,44 +1,42 @@
 <div class="flex mb-4">
   <div class="buttons">
     <h5 class="me-3" style="margin-bottom: 0;">Pedidos</h5>
-    <button type="button" class="btn btn-outline-success">
+    <button type="button" class="btn btn-outline-success" (click)="addPedido()">
       <mat-icon class="me-2">add</mat-icon>Novo
     </button>
   </div>
-  <div class="buttons">
-    <input class="form-control me-2 pesquisa" type="search" placeholder="Pesquisar por CPF">
-    <button class="btn btn-outline-primary" type="submit">
-      <mat-icon>search</mat-icon>
-    </button>
-  </div>
 </div>
-<div class="accordion" id="pedidos">
-  <div class="accordion-item">
-    <h2 class="accordion-header">
-      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#detalhePedido"
-        aria-expanded="true" aria-controls="detalhePedido">
-        #12345
-      </button>
-    </h2>
-    <div id="detalhePedido" class="accordion-collapse collapse" data-bs-parent="#pedidos">
-      <div class="accordion-body">
-        <table class="table">
-          <thead>
-            <tr>
-              <th scope="col">Item ID</th>
-              <th scope="col">Produto</th>
-              <th scope="col">Quantidade</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <th scope="row">123</th>
-              <td>Caneta Azul</td>
-              <td>55</td>
-            </tr>
-          </tbody>
-        </table>
+<ng-container *ngFor="let pedido of pedidos">
+  <div class="accordion" id="pedidos">
+    <div class="accordion-item">
+      <h2 class="accordion-header">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+          data-bs-target="#detalhePedido" aria-expanded="true" aria-controls="detalhePedido">
+          #{{pedido.id}}
+        </button>
+      </h2>
+      <div id="detalhePedido" class="accordion-collapse collapse" data-bs-parent="#pedidos">
+        <div class="accordion-body">
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Produto</th>
+                <th scope="col">Quantidade</th>
+              </tr>
+            </thead>
+            <tbody>
+              <ng-container *ngFor="let item of itens">
+                <tr>
+                  <th scope="row">{{item.id}}</th>
+                  <td>{{item.produto}}</td>
+                  <td>{{item.quantidade}}</td>
+                </tr>
+              </ng-container>
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   </div>
-</div>
+</ng-container>
