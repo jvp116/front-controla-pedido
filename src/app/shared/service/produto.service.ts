@@ -4,9 +4,7 @@ import { Observable } from 'rxjs';
 import { Produto } from './../models/produto.model';
 import { Produtos } from './../models/produtos.model';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable({ providedIn: 'root' })
 export class ProdutoService {
   apiUrl = 'http://localhost:8080/produtos';
   httpOptions = {

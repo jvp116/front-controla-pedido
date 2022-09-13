@@ -4,17 +4,15 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NgxMaskModule } from 'ngx-mask';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ClienteModule } from './cliente/cliente.module';
-import { ListaPedidoComponent } from './pedido/lista-pedido/lista-pedido.component';
+import { PedidoModule } from './pedido/pedido.module';
 import { ProdutoModule } from './produto/produto.module';
 import { MaterialModule } from './shared/modules/material/material.module';
-import { EditaProdutoComponent } from './produto/edita-produto/edita-produto.component';
 
 @NgModule({
-  declarations: [AppComponent, ListaPedidoComponent],
+  declarations: [AppComponent],
   imports: [
     HttpClientModule,
     BrowserModule,
@@ -25,8 +23,8 @@ import { EditaProdutoComponent } from './produto/edita-produto/edita-produto.com
     MatFormFieldModule,
     HttpClientModule,
     ClienteModule,
+    PedidoModule,
     ProdutoModule,
-    NgxMaskModule.forRoot(),
   ],
   providers: [],
   bootstrap: [AppComponent],

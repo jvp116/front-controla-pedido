@@ -20,6 +20,14 @@ export class ClienteService {
     return this.httpClient.get<Clientes>(this.apiUrl, this.httpOptions);
   }
 
+  // Obter Cliente por CPF
+  public getClienteByCpf(cpf: any): Observable<Cliente> {
+    return this.httpClient.get<Cliente>(
+      this.apiUrl + '/cpf/' + cpf,
+      this.httpOptions
+    );
+  }
+
   // Cadastrar Cliente
   public postCliente(cliente: Cliente): Observable<Cliente> {
     return this.httpClient.post<Cliente>(
