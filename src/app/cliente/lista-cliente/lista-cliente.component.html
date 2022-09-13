@@ -4,19 +4,9 @@
     <button type="button" class="btn btn-outline-success" (click)="addCliente()">
       <mat-icon class="me-2">add</mat-icon>Novo
     </button>
-    <button type="button" class="btn btn-secondary reset" (click)="pesquisa = false">
-      <mat-icon>refresh</mat-icon>
-    </button>
-  </div>
-  <div class="buttons" [formGroup]="searchForm">
-    <input matInput type="search" id="search" name="search" class="form-control ms-2 me-2 pesquisa"
-      formControlName="nomeCliente" placeholder="Pesquisar">
-    <button class="btn btn-outline-primary" type="submit" (click)="searchCliente()">
-      <mat-icon>search</mat-icon>
-    </button>
   </div>
 </div>
-<table class="table table-striped">
+<table class="table table">
   <thead>
     <tr>
       <th scope="col">ID</th>
@@ -28,48 +18,23 @@
     </tr>
   </thead>
   <tbody>
-    <div *ngIf="pesquisa == false">
-    </div>
-    <ng-template [ngIf]="!pesquisa" [ngIfElse]="listaPesquisa">
-      <ng-container *ngFor="let cliente of clientes">
-        <tr>
-          <th scope="row">{{cliente.id}}</th>
-          <td>{{cliente.nome}}</td>
-          <td>{{cliente.sobrenome}}</td>
-          <td>{{cliente.cpf | mask: '000.000.000-00'}}</td>
-          <td>
-            <button type="button" class="btn btn-outline-warning ms-3" (click)="editCliente(cliente)">
-              <mat-icon>edit</mat-icon>
-            </button>
-          </td>
-          <td>
-            <button type="button" class="btn btn-outline-danger ms-3" (click)="deleteCliente(cliente.id)">
-              <mat-icon>delete</mat-icon>
-            </button>
-          </td>
-        </tr>
-      </ng-container>
-    </ng-template>
-
-    <ng-template #listaPesquisa>
-      <ng-container *ngFor="let cliente of resultClientes">
-        <tr>
-          <th scope="row">{{cliente.id}}</th>
-          <td>{{cliente.nome}}</td>
-          <td>{{cliente.sobrenome}}</td>
-          <td>{{cliente.cpf | mask: '000.000.000-00'}}</td>
-          <td>
-            <button type="button" class="btn btn-outline-warning ms-3" (click)="editCliente(cliente)">
-              <mat-icon>edit</mat-icon>
-            </button>
-          </td>
-          <td>
-            <button type="button" class="btn btn-outline-danger ms-3" (click)="deleteCliente(cliente.id)">
-              <mat-icon>delete</mat-icon>
-            </button>
-          </td>
-        </tr>
-      </ng-container>
-    </ng-template>
+    <ng-container *ngFor="let cliente of clientes">
+      <tr>
+        <th scope="row">{{cliente.id}}</th>
+        <td>{{cliente.nome}}</td>
+        <td>{{cliente.sobrenome}}</td>
+        <td>{{cliente.cpf | mask: '000.000.000-00'}}</td>
+        <td>
+          <button type="button" class="btn btn-outline-warning ms-3" (click)="editCliente(cliente)">
+            <mat-icon>edit</mat-icon>
+          </button>
+        </td>
+        <td>
+          <button type="button" class="btn btn-outline-danger ms-3" (click)="deleteCliente(cliente.id)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </td>
+      </tr>
+    </ng-container>
   </tbody>
 </table>
