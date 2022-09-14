@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
-import { Observable } from 'rxjs';
-import { Cliente } from './../../shared/models/cliente.model';
+import { debounceTime } from 'rxjs';
 import { ClienteService } from './../../shared/service/cliente.service';
 import { PedidoService } from './../../shared/service/pedido.service';
 
@@ -13,9 +12,8 @@ import { PedidoService } from './../../shared/service/pedido.service';
 })
 export class CadastraPedidoComponent implements OnInit {
   public pedidoForm: FormGroup;
-  cliente: Cliente;
-  clienteAux: Observable<any>;
-  errorMsg: string;
+  options: string[] = [];
+  filteredOptions: string[] = [];
 
   constructor(
     private fb: FormBuilder,
@@ -25,10 +23,8 @@ export class CadastraPedidoComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.pedidoForm = this.fb.group({
-      cpf: ['', [Validators.required]],
-      produtos: [''],
-    });
+    this.initForm();
+    this.getNamesClientes();
   }
 
   createPedido() {
@@ -36,12 +32,36 @@ export class CadastraPedidoComponent implements OnInit {
     this.closeModal();
   }
 
-  getClienteByCpf() {
-    this.clienteService
-      .getClienteByCpf(this.pedidoForm.get('cpf')?.value)
-      .subscribe((result) => {
-        this.cliente = result;
+  initForm() {
+    this.pedidoForm = this.fb.group({
+      nome: ['', [Validators.required]],
+      produtos: [''],
+    });
+    this.pedidoForm
+      .get('nome')
+      ?.valueChanges.pipe(debounceTime(500))
+      .subscribe((response) => {
+        if (response && response.length) {
+          this.filterData(response);
+        } else {
+          this.filteredOptions = [];
+        }
       });
+  }
+
+  filterData(enteredData: string) {
+    this.filteredOptions = this.options.filter((item) => {
+      return item.toLowerCase().indexOf(enteredData.toLowerCase()) > -1;
+    });
+  }
+
+  getNamesClientes() {
+    this.clienteService.getNames().subscribe((response) => {
+      this.options = response;
+    });
+  }
+  getNames() {
+    this.clienteService.getClientes().subscribe((response) => {});
   }
 
   closeModal(): void {

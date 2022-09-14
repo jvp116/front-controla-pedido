@@ -1,8 +1,9 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { Cliente } from '../models/cliente.model';
-import { Clientes } from '../models/clientes.model';
+import { Clientes } from './../models/clientes.model';
 
 @Injectable({ providedIn: 'root' })
 export class ClienteService {
@@ -26,6 +27,13 @@ export class ClienteService {
       this.apiUrl + '/cpf/' + cpf,
       this.httpOptions
     );
+  }
+
+  // Obter Nomes dos Clientes
+  getNames() {
+    return this.httpClient
+      .get<Cliente[]>(this.apiUrl, this.httpOptions)
+      .pipe(map((response: Cliente[]) => response.map((item) => item['nome'])));
   }
 
   // Cadastrar Cliente

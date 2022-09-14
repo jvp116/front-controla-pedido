@@ -7,17 +7,17 @@
   <form class="formCliente" [formGroup]="clienteForm">
     <div class="mb-3">
       <label for="cpf" class="form-label">CPF <span style="color: red;">*</span></label>
-      <input matInput id="cpf" name="cpf" class="form-control" formControlName="cpf" mask="000.000.000-00">
+      <input id="cpf" name="cpf" class="form-control" formControlName="cpf" mask="000.000.000-00">
     </div>
 
     <div class="mb-3">
       <label for="nome" class="form-label">Nome <span style="color: red;">*</span></label>
-      <input matInput id="nome" class="form-control" formControlName="nome" name="nome">
+      <input id="nome" class="form-control" formControlName="nome" name="nome">
     </div>
 
     <div class="mb-3">
       <label for="sobrenome" class="form-label">Sobrenome <span style="color: red;">*</span></label>
-      <input matInput id="sobrenome" class="form-control" formControlName="sobrenome" name="sobrenome">
+      <input id="sobrenome" class="form-control" formControlName="sobrenome" name="sobrenome">
     </div>
   </form>
 </div>

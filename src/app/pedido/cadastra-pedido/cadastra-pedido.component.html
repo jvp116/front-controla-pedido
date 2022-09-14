@@ -7,12 +7,18 @@
       <div class="row mb-3">
         <div class="col-10">
           <div>
-            <label for="cpf" class="form-label">CPF <span style="color: red;" class="me-2">*</span></label>
-            <input matInput id="cpf" name="cpf" class="form-control" formControlName="cpf" mask="000.000.000-00">
+            <label for="nome" class="form-label">Nome</label>
+            <input id="nome" class="form-control" formControlName="nome" type="text" [matAutocomplete]="auto" />
+            <mat-autocomplete #auto="matAutocomplete">
+              <mat-option *ngFor="let item of filteredOptions" [value]="item">
+                {{item}}
+              </mat-option>
+            </mat-autocomplete>
+
           </div>
         </div>
         <div class="col-2 flex-col">
-          <button class="btn btn-outline-primary" type="submit" style="display: flex;" (click)="getClienteByCpf()">
+          <button class="btn btn-outline-primary" type="submit" style="display: flex;">
             <mat-icon>search</mat-icon>
           </button>
         </div>
@@ -20,14 +26,14 @@
       <div class="row">
         <div class="col">
           <div class="mb-3">
-            <label for="nome" class="form-label">Nome</label>
-            <input class="form-control" type="text" id="nome" value="{{this.cliente.nome}}" disabled>
+            <label for="sobrenome" class="form-label">Sobrenome</label>
+            <input class="form-control" type="text" id="sobrenome" disabled>
           </div>
         </div>
         <div class="col">
           <div class="mb-3">
-            <label for="sobrenome" class="form-label">Sobrenome</label>
-            <input class="form-control" type="text" id="sobrenome" value="{{this.cliente.sobrenome}}" disabled>
+            <label for="cpf" class="form-label">CPF</label>
+            <input id="cpf" name="cpf" class="form-control" mask="000.000.000-00" disabled>
           </div>
         </div>
       </div>
