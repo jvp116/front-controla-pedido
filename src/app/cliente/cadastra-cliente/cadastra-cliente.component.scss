@@ -3,3 +3,12 @@
   max-width: 500px;
   width: 100%;
 }
+
+.alert {
+  max-width: 500px;
+  display: flex;
+  align-content: center;
+  align-items: center;
+  flex-wrap: nowrap;
+  padding: 10px;
+}

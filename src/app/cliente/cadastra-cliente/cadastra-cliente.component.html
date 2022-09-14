@@ -1,5 +1,9 @@
 <h1 mat-dialog-title>Novo Cliente</h1>
 <div mat-dialog-content>
+  <div *ngIf="this.validaCpfCliente" class="alert alert-warning">
+    <mat-icon class="me-2">warning</mat-icon>
+    CPF inválido!
+  </div>
   <form class="formCliente" [formGroup]="clienteForm">
     <div class="mb-3">
       <label for="cpf" class="form-label">CPF <span style="color: red;">*</span></label>

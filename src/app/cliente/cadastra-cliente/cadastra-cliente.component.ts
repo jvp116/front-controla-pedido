@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
+import { isValidCPF } from '@brazilian-utils/brazilian-utils';
 import { ClienteService } from '../../shared/service/cliente.service';
-
 @Component({
   selector: 'app-cadastra-cliente',
   templateUrl: './cadastra-cliente.component.html',
@@ -10,6 +10,7 @@ import { ClienteService } from '../../shared/service/cliente.service';
 })
 export class CadastraClienteComponent implements OnInit {
   public clienteForm: FormGroup;
+  validaCpfCliente: boolean = false;
 
   constructor(
     private fb: FormBuilder,
@@ -26,12 +27,23 @@ export class CadastraClienteComponent implements OnInit {
   }
 
   createCliente() {
-    this.rest.postCliente(this.clienteForm.value).subscribe((result) => {});
-    this.closeModal();
+    if (isValidCPF(this.clienteForm.get('cpf')?.value)) {
+      this.rest.postCliente(this.clienteForm.value).subscribe((result) => {});
+      this.closeModal();
+    } else {
+      this.errorCpf();
+    }
   }
 
   closeModal(): void {
     this.dialogAdd.close();
     this.clienteForm.reset();
+  }
+
+  errorCpf(): void {
+    this.validaCpfCliente = true;
+    setTimeout(() => {
+      this.validaCpfCliente = false;
+    }, 4000);
   }
 }

@@ -20,6 +20,8 @@
     "@angular/platform-browser": "^14.1.0",
     "@angular/platform-browser-dynamic": "^14.1.0",
     "@angular/router": "^14.1.0",
+    "@brazilian-utils/brazilian-utils": "^1.0.0-rc.12",
+    "@popperjs/core": "^2.10.2",
     "bootstrap": "^5.2.0",
     "ngx-mask": "^14.0.3",
     "rxjs": "~7.5.0",
