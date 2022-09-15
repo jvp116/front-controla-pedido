@@ -21,16 +21,16 @@ export class ClienteService {
     return this.httpClient.get<Clientes>(this.apiUrl, this.httpOptions);
   }
 
-  // Obter Cliente por CPF
-  public getClienteByCpf(cpf: any): Observable<Cliente> {
+  // Obter Cliente por Nome
+  public getClienteByName(nome: string): Observable<Cliente> {
     return this.httpClient.get<Cliente>(
-      this.apiUrl + '/cpf/' + cpf,
+      this.apiUrl + '/nome/' + nome,
       this.httpOptions
     );
   }
 
   // Obter Nomes dos Clientes
-  getNames() {
+  public getNames() {
     return this.httpClient
       .get<Cliente[]>(this.apiUrl, this.httpOptions)
       .pipe(map((response: Cliente[]) => response.map((item) => item['nome'])));

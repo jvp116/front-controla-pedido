@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { debounceTime } from 'rxjs';
+import { Cliente } from './../../shared/models/cliente.model';
 import { ClienteService } from './../../shared/service/cliente.service';
 import { PedidoService } from './../../shared/service/pedido.service';
 
@@ -12,8 +13,11 @@ import { PedidoService } from './../../shared/service/pedido.service';
 })
 export class CadastraPedidoComponent implements OnInit {
   public pedidoForm: FormGroup;
-  options: string[] = [];
-  filteredOptions: string[] = [];
+  cliente: Cliente;
+  nomes: string[] = [];
+  filteredNomes: string[] = [];
+  meetCliente: boolean;
+  disableInputNome: boolean;
 
   constructor(
     private fb: FormBuilder,
@@ -44,24 +48,37 @@ export class CadastraPedidoComponent implements OnInit {
         if (response && response.length) {
           this.filterData(response);
         } else {
-          this.filteredOptions = [];
+          this.filteredNomes = [];
+          this.meetCliente = false;
         }
       });
   }
 
   filterData(enteredData: string) {
-    this.filteredOptions = this.options.filter((item) => {
+    this.filteredNomes = this.nomes.filter((item) => {
+      if (item.toLowerCase().indexOf(enteredData.toLowerCase()) > -1) {
+        this.meetCliente = true;
+      }
       return item.toLowerCase().indexOf(enteredData.toLowerCase()) > -1;
     });
   }
 
   getNamesClientes() {
     this.clienteService.getNames().subscribe((response) => {
-      this.options = response;
+      this.nomes = response;
     });
   }
-  getNames() {
-    this.clienteService.getClientes().subscribe((response) => {});
+
+  getClienteByName() {
+    this.clienteService
+      .getClienteByName(this.pedidoForm.get('nome')?.value)
+      .subscribe((result) => {
+        this.cliente = result;
+        if (this.cliente) {
+          this.disableInputNome = true;
+          this.meetCliente = false;
+        }
+      });
   }
 
   closeModal(): void {
