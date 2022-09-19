@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
+import { formatCPF } from '@brazilian-utils/brazilian-utils';
 import { debounceTime } from 'rxjs';
 import { Cliente } from './../../shared/models/cliente.model';
 import { ClienteService } from './../../shared/service/cliente.service';
@@ -14,10 +15,10 @@ import { PedidoService } from './../../shared/service/pedido.service';
 export class CadastraPedidoComponent implements OnInit {
   public pedidoForm: FormGroup;
   cliente: Cliente;
-  nomes: string[] = [];
-  filteredNomes: string[] = [];
-  meetCliente: boolean;
-  disableInputNome: boolean;
+  cpfs: string[] = [];
+  filteredCpfs: string[] = [];
+  meetCpf: boolean;
+  disableInputCpf: boolean;
 
   constructor(
     private fb: FormBuilder,
@@ -28,7 +29,7 @@ export class CadastraPedidoComponent implements OnInit {
 
   ngOnInit(): void {
     this.initForm();
-    this.getNamesClientes();
+    this.getCpfClientes();
   }
 
   createPedido() {
@@ -38,45 +39,45 @@ export class CadastraPedidoComponent implements OnInit {
 
   initForm() {
     this.pedidoForm = this.fb.group({
-      nome: ['', [Validators.required]],
+      cpf: ['', [Validators.required]],
       produtos: [''],
     });
     this.pedidoForm
-      .get('nome')
+      .get('cpf')
       ?.valueChanges.pipe(debounceTime(500))
       .subscribe((response) => {
         if (response && response.length) {
           this.filterData(response);
         } else {
-          this.filteredNomes = [];
-          this.meetCliente = false;
+          this.filteredCpfs = [];
+          this.meetCpf = false;
         }
       });
   }
 
   filterData(enteredData: string) {
-    this.filteredNomes = this.nomes.filter((item) => {
+    this.filteredCpfs = this.cpfs.filter((item) => {
       if (item.toLowerCase().indexOf(enteredData.toLowerCase()) > -1) {
-        this.meetCliente = true;
+        this.meetCpf = true;
       }
       return item.toLowerCase().indexOf(enteredData.toLowerCase()) > -1;
     });
   }
 
-  getNamesClientes() {
-    this.clienteService.getNames().subscribe((response) => {
-      this.nomes = response;
+  getCpfClientes() {
+    this.clienteService.getCpfs().subscribe((response) => {
+      this.cpfs = response;
     });
   }
 
-  getClienteByName() {
+  getClienteByCpf() {
     this.clienteService
-      .getClienteByName(this.pedidoForm.get('nome')?.value)
+      .getClienteByCpf(this.pedidoForm.get('cpf')?.value)
       .subscribe((result) => {
         this.cliente = result;
         if (this.cliente) {
-          this.disableInputNome = true;
-          this.meetCliente = false;
+          this.disableInputCpf = true;
+          this.meetCpf = false;
         }
       });
   }

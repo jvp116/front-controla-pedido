@@ -6,39 +6,32 @@
       <hr>
       <div class="row mb-3">
         <div class="col-10">
-          <div>
-            <label for="nome" class="form-label">Nome <span style="color: red;">*</span></label>
-            <input id="nome" class="form-control" formControlName="nome" type="text" [matAutocomplete]="auto"
-              [attr.disabled]="this.disableInputNome" />
-            <mat-autocomplete #auto="matAutocomplete">
-              <mat-option *ngFor="let item of filteredNomes" [value]="item">
-                {{item}}
-              </mat-option>
-            </mat-autocomplete>
-
-          </div>
+          <label for="cpf" class="form-label">CPF <span style="color: red;">*</span></label>
+          <input id="cpf" class="form-control" formControlName="cpf" type="text" [matAutocomplete]="auto"
+            [attr.disabled]="this.disableInputCpf" />
+          <mat-autocomplete #auto="matAutocomplete">
+            <mat-option *ngFor="let item of filteredCpfs" [value]="item">
+              {{item}}
+            </mat-option>
+          </mat-autocomplete>
         </div>
         <div class="col-2 flex-col">
-          <button class="btn btn-outline-primary" type="submit" style="display: flex;" (click)="getClienteByName()"
-            [disabled]="!this.meetCliente">
+          <button class="btn btn-outline-primary" type="submit" style="display: flex;" (click)="getClienteByCpf()"
+            [disabled]="!this.meetCpf">
             <mat-icon>search</mat-icon>
           </button>
         </div>
       </div>
-      <div class="row">
+      <div class="row mb-3">
         <div class="col">
-          <div class="mb-3">
-            <label for="sobrenome" class="form-label">Sobrenome</label>
-            <input class="form-control" type="text" id="sobrenome"
-              value="{{this.cliente !=null ? this.cliente.sobrenome : ''}}" disabled>
-          </div>
+          <label for="nome" class="form-label">Nome</label>
+          <input class="form-control" type="text" id="nome" value="{{this.cliente !=null ? this.cliente.nome : ''}}"
+            disabled>
         </div>
         <div class="col">
-          <div class="mb-3">
-            <label for="cpf" class="form-label">CPF</label>
-            <input id="cpf" name="cpf" class="form-control"
-              value="{{this.cliente !=null ? (this.cliente.cpf | mask: '000.000.000-00') : ''}}" disabled>
-          </div>
+          <label for="sobrenome" class="form-label">Sobrenome</label>
+          <input class="form-control" type="text" id="sobrenome"
+            value="{{this.cliente !=null ? this.cliente.sobrenome : ''}}" disabled>
         </div>
       </div>
     </fieldset>
