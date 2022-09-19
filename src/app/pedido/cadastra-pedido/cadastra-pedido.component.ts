@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
-import { formatCPF } from '@brazilian-utils/brazilian-utils';
 import { debounceTime } from 'rxjs';
 import { Cliente } from './../../shared/models/cliente.model';
+import { Produto } from './../../shared/models/produto.model';
 import { ClienteService } from './../../shared/service/cliente.service';
 import { PedidoService } from './../../shared/service/pedido.service';
+import { ProdutoService } from './../../shared/service/produto.service';
 
 @Component({
   selector: 'app-cadastra-pedido',
@@ -19,17 +20,20 @@ export class CadastraPedidoComponent implements OnInit {
   filteredCpfs: string[] = [];
   meetCpf: boolean;
   disableInputCpf: boolean;
+  produtos: Produto[];
 
   constructor(
     private fb: FormBuilder,
     private rest: PedidoService,
     private clienteService: ClienteService,
+    private produtoService: ProdutoService,
     public dialogAdd: MatDialogRef<CadastraPedidoComponent>
   ) {}
 
   ngOnInit(): void {
     this.initForm();
     this.getCpfClientes();
+    this.getProdutos();
   }
 
   createPedido() {
@@ -80,6 +84,12 @@ export class CadastraPedidoComponent implements OnInit {
           this.meetCpf = false;
         }
       });
+  }
+
+  getProdutos() {
+    return this.produtoService.getProdutos().subscribe((data) => {
+      this.produtos = JSON.parse(JSON.stringify(data));
+    });
   }
 
   closeModal(): void {
