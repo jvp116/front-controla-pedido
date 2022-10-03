@@ -1,14 +1,16 @@
-import { ItemPedido } from './../../shared/models/itemPedido.model';
+import { formatDate } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
+import $ from 'jquery';
 import { debounceTime } from 'rxjs';
 import { Cliente } from './../../shared/models/cliente.model';
+import { ItemPedido } from './../../shared/models/itemPedido.model';
+import { Pedido } from './../../shared/models/pedido.model';
 import { Produto } from './../../shared/models/produto.model';
 import { ClienteService } from './../../shared/service/cliente.service';
 import { PedidoService } from './../../shared/service/pedido.service';
 import { ProdutoService } from './../../shared/service/produto.service';
-import $ from 'jquery';
 @Component({
   selector: 'app-cadastra-pedido',
   templateUrl: './cadastra-pedido.component.html',
@@ -69,7 +71,13 @@ export class CadastraPedidoComponent implements OnInit {
   }
 
   createPedido() {
-    this.rest.postPedido(this.pedidoForm.value).subscribe((result) => {});
+    let pedido = new Pedido();
+    pedido.data = formatDate(new Date(), 'dd/MM/yyyy HH:mm:ss', 'pt-BR');
+    pedido.cliente = this.cliente;
+    pedido.itens = this.itensPedido;
+    console.log(pedido);
+
+    this.rest.postPedido(pedido).subscribe((result) => {});
     this.closeModal();
   }
 
