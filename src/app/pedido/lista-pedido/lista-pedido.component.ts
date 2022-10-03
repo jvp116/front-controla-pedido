@@ -32,7 +32,7 @@ export class ListaPedidoComponent implements OnInit {
   addPedido(): void {
     const dialogAdd = this.dialog.open(CadastraPedidoComponent, {
       minWidth: '850px',
-      minHeight: '750px',
+      minHeight: '550px',
     });
     dialogAdd.afterClosed().subscribe((result) => {
       this.ngOnInit();

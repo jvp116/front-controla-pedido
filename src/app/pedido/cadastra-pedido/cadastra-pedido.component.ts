@@ -84,7 +84,6 @@ export class CadastraPedidoComponent implements OnInit {
   initForm() {
     this.pedidoForm = this.fb.group({
       cpf: ['', [Validators.required]],
-      produtos: [''],
     });
     this.pedidoForm
       .get('cpf')
