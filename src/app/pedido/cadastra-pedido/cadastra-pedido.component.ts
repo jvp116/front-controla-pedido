@@ -1,3 +1,4 @@
+import { ItemPedido } from './../../shared/models/itemPedido.model';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
@@ -7,7 +8,7 @@ import { Produto } from './../../shared/models/produto.model';
 import { ClienteService } from './../../shared/service/cliente.service';
 import { PedidoService } from './../../shared/service/pedido.service';
 import { ProdutoService } from './../../shared/service/produto.service';
-
+import $ from 'jquery';
 @Component({
   selector: 'app-cadastra-pedido',
   templateUrl: './cadastra-pedido.component.html',
@@ -21,6 +22,10 @@ export class CadastraPedidoComponent implements OnInit {
   meetCpf: boolean;
   disableInputCpf: boolean;
   produtos: Produto[];
+  itemPedido: ItemPedido;
+  itensPedido: ItemPedido[] = [];
+  qtdProduto: any;
+  validaQtd: boolean;
 
   constructor(
     private fb: FormBuilder,
@@ -34,6 +39,33 @@ export class CadastraPedidoComponent implements OnInit {
     this.initForm();
     this.getCpfClientes();
     this.getProdutos();
+  }
+
+  createItemPedido(id: string) {
+    if ($('#idProd' + id).is(':checked')) {
+      var itemPedido = new ItemPedido();
+      this.produtos.forEach((produto) => {
+        if (id == produto.id) {
+          itemPedido.produto = produto;
+          this.qtdProduto = $('#idQtdProd' + id).val();
+          if (this.qtdProduto < 1 || this.qtdProduto > 100) {
+            this.validaQtd = true;
+            setTimeout(() => {
+              this.validaQtd = false;
+            }, 4000);
+          } else {
+            itemPedido.quantidade = this.qtdProduto;
+            this.itensPedido.push(itemPedido);
+          }
+        }
+      });
+    } else {
+      for (let i = 0; i < this.itensPedido.length; i++) {
+        if (id == this.itensPedido[i].produto.id) {
+          this.itensPedido.splice(i, 1);
+        }
+      }
+    }
   }
 
   createPedido() {
