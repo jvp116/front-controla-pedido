@@ -21,7 +21,6 @@
           <table class="table">
             <thead>
               <tr>
-                <th scope="col">ID</th>
                 <th scope="col">Produto</th>
                 <th scope="col">Quantidade</th>
               </tr>
@@ -29,8 +28,7 @@
             <tbody>
               <ng-container *ngFor="let item of itens">
                 <tr>
-                  <th scope="row">{{item.id}}</th>
-                  <td>{{item.produto}}</td>
+                  <td>{{item.produto.descricao}}</td>
                   <td>{{item.quantidade}}</td>
                 </tr>
               </ng-container>
